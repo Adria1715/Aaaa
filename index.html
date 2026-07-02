@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>💌 Una carta para ti</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>Una carta para ti ❤️</title>
 
 <style>
 
@@ -16,213 +12,32 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:'Poppins',sans-serif;
+font-family:Arial,sans-serif;
 }
 
 body{
-
 height:100vh;
-overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-
-background:
-linear-gradient(180deg,#091428,#142850,#1d3557);
-
-color:white;
-
-}
-
-#stars{
-
-position:fixed;
-width:100%;
-height:100%;
+background:linear-gradient(135deg,#ffdde1,#ee9ca7);
 overflow:hidden;
-left:0;
-top:0;
-z-index:0;
-
 }
 
-.star{
+.card{
 
-position:absolute;
+width:90%;
+max-width:700px;
+
 background:white;
-border-radius:50%;
-opacity:.8;
-animation:twinkle 4s infinite;
-
-}
-
-@keyframes twinkle{
-
-0%,100%{
-
-opacity:.2;
-
-}
-
-50%{
-
-opacity:1;
-
-}
-
-}
-
-#container{
-
-position:relative;
-width:92%;
-max-width:760px;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(12px);
-
-border-radius:25px;
 
 padding:35px;
 
-box-shadow:0 0 30px rgba(0,0,0,.4);
+border-radius:20px;
 
-z-index:5;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
 
-}
-
-#snoopy{
-
-position:absolute;
-
-right:20px;
-
-top:-55px;
-
-width:120px;
-
-transition:.5s;
-
-animation:bounce 3s infinite;
-
-}
-
-@keyframes bounce{
-
-0%,100%{
-
-transform:translateY(0px);
-
-}
-
-50%{
-
-transform:translateY(-10px);
-
-}
-
-}
-
-#assistant{
-
-background:white;
-
-color:#222;
-
-padding:15px;
-
-border-radius:15px;
-
-min-height:70px;
-
-font-size:17px;
-
-margin-bottom:20px;
-
-}
-
-#story{
-
-font-size:19px;
-
-line-height:1.9;
-
-min-height:250px;
-
-white-space:pre-line;
-
-}
-
-.center{
-
-text-align:center;
-
-}
-
-button{
-
-padding:14px 25px;
-
-border:none;
-
-border-radius:35px;
-
-cursor:pointer;
-
-background:#ff5b93;
-
-color:white;
-
-font-size:17px;
-
-transition:.3s;
-
-margin:8px;
-
-}
-
-button:hover{
-
-transform:scale(1.06);
-
-background:#ff3e80;
-
-}
-
-.hidden{
-
-display:none;
-
-}
-
-#choices{
-
-display:flex;
-
-justify-content:center;
-
-flex-wrap:wrap;
-
-margin-top:25px;
-
-}
-
-#musicBtn{
-
-position:fixed;
-
-bottom:20px;
-
-right:20px;
-
-z-index:20;
-
-}
-
-.fade{
-
-animation:fade .7s;
+animation:fade .8s;
 
 }
 
@@ -231,18 +46,70 @@ animation:fade .7s;
 from{
 
 opacity:0;
-
-transform:translateY(10px);
+transform:translateY(20px);
 
 }
 
 to{
 
 opacity:1;
-
 transform:translateY(0);
 
 }
+
+}
+
+#message{
+
+font-size:19px;
+
+line-height:1.8;
+
+white-space:pre-line;
+
+min-height:250px;
+
+}
+
+button{
+
+margin-top:25px;
+
+padding:14px 25px;
+
+border:none;
+
+border-radius:30px;
+
+background:#ff5c8d;
+
+color:white;
+
+font-size:17px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#ff2f74;
+
+transform:scale(1.05);
+
+}
+
+#choices{
+
+display:none;
+
+gap:15px;
+
+justify-content:center;
+
+flex-wrap:wrap;
 
 }
 
@@ -252,23 +119,17 @@ transform:translateY(0);
 
 <body>
 
-<div id="stars"></div>
+<div class="card">
 
-<div id="container">
+<div id="message">
 
-<img
-id="snoopy"
-src="https://upload.wikimedia.org/wikipedia/en/5/53/Snoopy_Peanuts.png">
+Pulsa el botón para comenzar...
 
-<div id="assistant"></div>
+</div>
 
-<div id="story"></div>
+<div id="start">
 
-<div
-id="menu"
-class="center">
-
-<button onclick="startStory()">
+<button onclick="start()">
 
 💌 Abrir carta
 
@@ -276,85 +137,41 @@ class="center">
 
 </div>
 
-<div
-id="choices"
-class="hidden">
+<div id="choices">
 
-<button onclick="pathA()">
+<button onclick="endLove()">
 
-😊 Continuar
+❤️ Seguir leyendo
 
 </button>
 
-<button onclick="pathB()">
+<button onclick="endFriend()">
 
-🤍 Tengo dudas
+🌙 Prefiero una amistad
 
 </button>
 
 </div>
 
 </div>
-
-<audio
-id="music"
-loop>
-
-<source
-src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_2c0a1b5d64.mp3?filename=romantic-piano-110624.mp3"
-type="audio/mpeg">
-
-</audio>
-
-<button
-id="musicBtn"
-onclick="toggleMusic()">
-
-🎵 Música
-
-</button>
 
 <script>
 
-const assistant=document.getElementById("assistant");
+const msg=document.getElementById("message");
 
-const story=document.getElementById("story");
-
-const menu=document.getElementById("menu");
+const startDiv=document.getElementById("start");
 
 const choices=document.getElementById("choices");
 
-const music=document.getElementById("music");
+function write(text,speed=25,callback){
 
-for(let i=0;i<140;i++){
-
-let star=document.createElement("div");
-
-star.className="star";
-
-star.style.width=(Math.random()*3+1)+"px";
-
-star.style.height=star.style.width;
-
-star.style.left=Math.random()*100+"vw";
-
-star.style.top=Math.random()*100+"vh";
-
-star.style.animationDelay=Math.random()*5+"s";
-
-document.getElementById("stars").appendChild(star);
-
-}
-
-function type(element,text,speed=25,callback){
-
-element.innerHTML="";
+msg.innerHTML="";
 
 let i=0;
 
 let timer=setInterval(()=>{
 
-element.innerHTML+=text.charAt(i);
+msg.innerHTML+=text.charAt(i);
 
 i++;
 
@@ -370,413 +187,46 @@ if(callback)callback();
 
 }
 
-function toggleMusic(){
+function start(){
 
-if(music.paused){
+startDiv.style.display="none";
 
-music.play();
+write(
 
-}else{
-
-music.pause();
-
-}
-
-}
-function startStory(){
-
-menu.classList.add("hidden");
-
-type(
-assistant,
-"🐶 Hola... Soy Snoopy. Me pidieron entregarte esta carta. Prométeme que la leerás hasta el final...",
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-story,
-
-"Hay personas que llegan a nuestra vida sin hacer ruido.\n\nNo necesitan hacer algo extraordinario para quedarse en nuestros pensamientos.\n\nBasta una conversación, una sonrisa o un pequeño momento para que comiencen a ocupar un lugar especial.\n\nY mientras escribía esta carta... no podía dejar de pensar en una sola persona.\n\nQuizá ya imagines de quién hablo...",
+"Si estás leyendo esto es porque quería decirte algo que llevaba tiempo guardando.\n\nHay personas que llegan sin hacer ruido... pero terminan ocupando un lugar muy especial.\n\nNo sé si esta carta cambiará algo, pero sí sé que no quería seguir callando lo que siento.\n\nAntes de terminar... quiero que elijas una opción.",
 
 20,
 
 ()=>{
 
-choices.classList.remove("hidden");
-
-});
-
-},900);
+choices.style.display="flex";
 
 });
 
 }
+function endLove(){
 
-function pathA(){
+choices.style.display="none";
 
-choices.classList.add("hidden");
+write(
 
-type(
-
-assistant,
-
-"🐶 Me alegra que decidieras seguir. Lo que viene ahora es lo más importante...",
-
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-
-story,
-
-"Desde hace tiempo disfruto mucho hablar contigo.\n\nCada conversación, por pequeña que sea, consigue mejorar mi día.\n\nNo escribo esto esperando cambiar nada entre nosotros.\n\nSolo quería que supieras que eres una persona muy especial para mí.\n\nY pase lo que pase después de esta carta... quería agradecerte por existir.",
+"❤️ Gracias por seguir leyendo.\n\nNo escribí esta carta esperando una respuesta inmediata.\n\nSolo quería que supieras que cada conversación contigo, cada sonrisa y cada momento compartido han significado mucho para mí.\n\nQuizá esta carta no cambie nada entre nosotros...\n\nO quizá sea el inicio de algo muy bonito.\n\nSea cual sea el camino, gracias por existir y por hacer mis días un poco mejores.\n\nSi algún día decides caminar a mi lado, prometo hacerlo paso a paso, sin prisas, disfrutando cada momento.\n\nGracias por llegar hasta aquí. ❤️",
 
 20,
 
 ()=>{
 
-nextDecision();
+msg.innerHTML+=`
 
-});
+<br><br><center>
 
-},900);
+<button onclick="location.reload()">
 
-});
+🔄 Leer otra vez
 
-}
-
-function pathB(){
-
-choices.classList.add("hidden");
-
-type(
-
-assistant,
-
-"🐶 Tener dudas también está bien. Aun así... déjame terminar.",
-
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-
-story,
-
-"Entiendo que una carta puede parecer algo inesperado.\n\nPero precisamente por eso decidí escribirla.\n\nHay sentimientos que son mucho más fáciles de expresar con palabras que mirando directamente a los ojos.\n\nAsí que gracias por seguir aquí unos minutos más.",
-
-20,
-
-()=>{
-
-nextDecision();
-
-});
-
-},900);
-
-});
-
-}
-
-function nextDecision(){
-
-choices.innerHTML=`
-
-<button onclick="choiceSmile()">
-😊 Sonreír
 </button>
 
-<button onclick="choiceSilence()">
-🤍 Guardar silencio
-</button>
-
-`;
-
-choices.classList.remove("hidden");
-}
-function choiceSmile(){
-
-choices.classList.add("hidden");
-
-type(
-assistant,
-"🐶 Esa sonrisa dice más de lo que imaginas...",
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-story,
-
-"¿Sabes?\n\nCuando empecé esta carta pensé en escribir algo perfecto.\n\nPero luego entendí que lo perfecto no existe.\n\nAsí que decidí escribir exactamente lo que siento.\n\nMe gusta la tranquilidad que transmites.\nMe gusta la forma en que haces especiales los momentos más simples.\n\nY, aunque quizá aún sea pronto para decirlo, me gustaría seguir conociéndote poco a poco.\n\nNo quiero apresurar nada.\nSolo disfrutar cada momento que podamos compartir.",
-
-20,
-
-()=>{
-
-choices.innerHTML=`
-
-<button onclick="choiceContinue()">
-❤️ Continuar
-</button>
-
-<button onclick="choiceQuestion()">
-🤔 ¿Por qué yo?
-</button>
-
-`;
-
-choices.classList.remove("hidden");
-
-});
-
-},800);
-
-});
-
-}
-
-function choiceSilence(){
-
-choices.classList.add("hidden");
-
-type(
-assistant,
-"🐶 A veces el silencio también responde...",
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-story,
-
-"No importa si aún no sabes qué pensar.\n\nSolo quería que esta carta llegara hasta ti.\n\nPorque hay sentimientos que merecen ser expresados, aunque no sepamos cuál será la respuesta.\n\nY si algún día recuerdas estas palabras... espero que sea con una sonrisa.",
-
-20,
-
-()=>{
-
-choices.innerHTML=`
-
-<button onclick="choiceContinue()">
-🌸 Seguir leyendo
-</button>
-
-<button onclick="choiceQuestion()">
-💭 Pensarlo
-</button>
-
-`;
-
-choices.classList.remove("hidden");
-
-});
-
-},800);
-
-});
-
-}
-
-function choiceContinue(){
-
-choices.classList.add("hidden");
-type(
-assistant,
-"🐶 Creo que ya es momento de decirte la verdad...",
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-story,
-
-"Desde hace tiempo quería escribirte algo así.\n\nNo porque espere cambiar lo que somos hoy.\n\nSino porque hay personas que merecen saber el efecto tan bonito que tienen en la vida de alguien más.\n\nQuizá esta carta termine aquí...\nQuizá sea apenas el comienzo de una historia.\n\nEso ya no depende de mí.\n\nSolo quería agradecerte por existir y por haber llegado a mi camino.",
-
-20,
-
-()=>{
-
-choices.innerHTML=`
-
-<button onclick="endingLove()">
-❤️ Leer el final
-</button>
-
-<button onclick="endingSecret()">
-✨ Una última pregunta
-</button>
-
-`;
-
-choices.classList.remove("hidden");
-
-});
-
-},800);
-
-});
-
-}
-
-function choiceQuestion(){
-
-choices.classList.add("hidden");
-
-type(
-assistant,
-"🐶 Porque simplemente apareciste cuando menos lo esperaba...",
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-story,
-
-"No existe una razón perfecta.\n\nSimplemente, entre tantas personas, hubo algo en ti que llamó mi atención.\n\nTu forma de ser, tu manera de hablar y esos pequeños detalles que probablemente ni siquiera notas.\n\nY fue suficiente para querer escribir esta carta.",
-
-20,
-
-()=>{
-
-choices.innerHTML=`
-
-<button onclick="endingLove()">
-💌 Continuar
-</button>
-
-<button onclick="endingSecret()">
-🌙 Otra opción
-</button>
-
-`;
-
-choices.classList.remove("hidden");
-
-});
-
-},800);
-
-});
-
-}
-function endingLove(){
-
-choices.classList.add("hidden");
-
-type(
-assistant,
-"🐶 Gracias por llegar hasta aquí...",
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-story,
-
-"Si llegaste hasta el final de esta carta, quiero darte las gracias.\n\nNo sé qué pasará mañana.\n\nNo sé si esta carta cambiará algo.\n\nPero sí sé que no quería seguir guardando estas palabras.\n\nMe haces sonreír más de lo que imaginas.\n\nY aunque todavía estemos escribiendo nuestra historia, me gustaría seguir compartiendo momentos contigo.\n\nNo busco respuestas rápidas.\nSolo quiero seguir conociéndote.\n\n❤️ Gracias por leer esta pequeña parte de mi corazón.",
-
-20,
-
-()=>{
-
-choices.innerHTML=`
-
-<button onclick="credits()">
-🌸 Finalizar
-</button>
-
-`;
-
-choices.classList.remove("hidden");
-
-});
-
-},900);
-
-});
-
-}
-
-function endingSecret(){
-
-choices.classList.add("hidden");
-
-type(
-assistant,
-"🐶 Sabía que elegirías esta opción...",
-
-28,
-
-()=>{
-
-setTimeout(()=>{
-
-type(
-story,
-
-"Quiero confesarte un pequeño secreto.\n\nMientras escribía esta carta, imaginé muchas formas de terminarla.\n\nPero ninguna se sentía correcta.\n\nEntonces entendí que el mejor final no podía escribirlo yo.\n\nEl verdadero final depende de lo que ocurra después de cerrar esta página.\n\nQuizá algún día podamos recordar esta carta juntos y reírnos de lo nervioso que estaba al escribirla.\n\n✨ Hasta entonces... gracias por estar aquí.",
-
-20,
-
-()=>{
-
-choices.innerHTML=`
-
-<button onclick="credits()">
-✨ Cerrar carta
-</button>
-
-`;
-
-choices.classList.remove("hidden");
-
-});
-
-},900);
-
-});
-
-}
-
-function credits(){
-
-choices.classList.add("hidden");
-
-type(
-assistant,
-"🐶 Fin de la carta.",
-
-30,
-
-()=>{
-
-story.innerHTML=`
-
-💌 Gracias por dedicar unos minutos a leer.
-
-Espero que esta pequeña experiencia haya logrado sacarte una sonrisa.
-
-Con cariño ❤️
+</center>
 
 `;
 
@@ -784,50 +234,35 @@ Con cariño ❤️
 
 }
 
-window.onload=()=>{
+function endFriend(){
 
-type(
-assistant,
-"🐶 Hola... tengo una pequeña misión para ti.",
-30);
+choices.style.display="none";
 
-story.innerHTML="Pulsa el botón <b>💌 Abrir carta</b> para comenzar esta pequeña aventura.";
+write(
 
-};
+"🌙 Gracias por ser sincera.\n\nNo importa cuál haya sido tu elección.\n\nLo más importante para mí era que conocieras estas palabras.\n\nHay personas que dejan una huella muy bonita en nuestra vida, y tú eres una de ellas.\n\nEspero que esta carta al menos haya conseguido sacarte una sonrisa.\n\nTe deseo toda la felicidad del mundo y espero que sigamos compartiendo buenos momentos. ✨",
 
-// Animación de Snoopy
+20,
 
-const snoopy=document.getElementById("snoopy");
+()=>{
 
-let direction=1;
+msg.innerHTML+=`
 
-setInterval(()=>{
+<br><br><center>
 
-let y=Math.sin(Date.now()/400)*6;
+<button onclick="location.reload()">
 
-snoopy.style.transform=`translateY(${y}px)`;
+🔄 Volver al inicio
 
-},30);
+</button>
 
-// Efecto al mover el mouse
+</center>
 
-document.addEventListener("mousemove",(e)=>{
-
-let x=(window.innerWidth/2-e.clientX)/80;
-
-let y=(window.innerHeight/2-e.clientY)/80;
-
-document.getElementById("container").style.transform=
-`rotateY(${x}deg) rotateX(${y}deg)`;
+`;
 
 });
 
-document.addEventListener("mouseleave",()=>{
-
-document.getElementById("container").style.transform=
-"rotateY(0deg) rotateX(0deg)";
-
-});
+}
 
 </script>
 
